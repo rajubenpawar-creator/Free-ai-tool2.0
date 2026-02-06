@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Compressor Online – Free Image Size Reducer</title>
+<meta name="description" content="Compress images online free. Reduce JPG, PNG & WebP image size without losing quality. Fast image compressor.">
+<meta name="keywords" content="image compressor online,compress image free,reduce image size,jpg compressor,png compressor,image size reducer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+<h1>Image Compressor Online</h1>
+
+<input type="file" id="img">
+<input type="range" id="q" min="10" max="90" value="70">
+<button onclick="compress()">Compress Image</button>
+<br><a id="d"></a>
+
+<h2>Compress Images Without Losing Quality</h2>
+<p>
+This free image compressor online helps you reduce image size easily.
+You can compress JPG, PNG and WebP images for website upload, email and social media.
+</p>
+
+<script>
+function compress(){
+ const f=img.files[0];
+ const i=new Image();
+ i.src=URL.createObjectURL(f);
+ i.onload=()=>{
+  const c=document.createElement("canvas");
+  c.width=i.width;c.height=i.height;
+  c.getContext("2d").drawImage(i,0,0);
+  c.toBlob(b=>{
+   d.href=URL.createObjectURL(b);
+   d.download="compressed.jpg";
+   d.innerText="Download Compressed Image";
+  },"image/jpeg",q.value/100);
+ }
+}
+</script>
+</body>
+</html>
